@@ -46,3 +46,4 @@ tests:
     dependencies:
     - roman-numerals-haskell
     - hspec
+    - mtl
