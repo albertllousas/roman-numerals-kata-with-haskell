@@ -2,8 +2,8 @@ module RomanNumerals where
 
 
 
-convertToRomanNumeral :: Int -> String
-convertToRomanNumeral 1 = "I"
-convertToRomanNumeral 2 = "II"
-convertToRomanNumeral 3 = "III"
-convertToRomanNumeral _ = error "Not implemented"
+toRoman :: Int -> String
+toRoman 1 = "I"
+toRoman 2 = "II"
+toRoman 3 = "III"
+toRoman _ = error "Not implemented"

@@ -15,4 +15,4 @@ spec = do
             (3, "III")
           ] $ \(number, romanNumeral) ->
       it ("should convert " ++ (show number) ++ " to "++ (show romanNumeral)) $ do
-        convertToRomanNumeral number `shouldBe` romanNumeral
+        toRoman number `shouldBe` romanNumeral
