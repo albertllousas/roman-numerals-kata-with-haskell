@@ -1,9 +1,12 @@
 module RomanNumerals where
 
 toRoman :: Int -> String
-toRoman 1 = "I"
-toRoman 2 = "II"
-toRoman 3 = "III"
-toRoman 4 = "IV"
-toRoman _ = error "Not implemented"
+toRoman num = toRoman' num ""
+
+toRoman' :: Int -> String -> String
+toRoman' num acc
+  | num == 0 = acc
+  | num < 4 = toRoman' (num - 1) (acc ++ "I")
+  | num == 4 = "IV"
+  | otherwise = error "Not implemented"
 
