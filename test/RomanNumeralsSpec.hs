@@ -12,7 +12,8 @@ spec = do
     forM_ [
             (1,"I"),
             (2, "II"),
-            (3, "III")
+            (3, "III"),
+            (4, "IV")
           ] $ \(number, romanNumeral) ->
       it ("should convert " ++ (show number) ++ " to "++ (show romanNumeral)) $ do
         toRoman number `shouldBe` romanNumeral
