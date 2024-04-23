@@ -10,6 +10,6 @@ toRoman' num acc
   | num == 4 = "IV"
   | num < 9 = toRoman' (num - 5) (acc ++ "V")
   | num == 9 = "IX"
-  | num == 10 = "X"
+  | num < 40 = toRoman' (num - 10) (acc ++ "X")
   | otherwise = error "Not implemented"
 
