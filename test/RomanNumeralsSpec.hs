@@ -21,7 +21,10 @@ spec = do
             (9, "IX"),
             (10, "X"),
             (15, "XV"),
-            (27, "XXVII")
+            (27, "XXVII"),
+            (40, "XL"),
+            (46, "XLVI"),
+            (50, "L")
           ] $ \(number, romanNumeral) ->
       it ("should convert " ++ (show number) ++ " to "++ (show romanNumeral)) $ do
         toRoman number `shouldBe` romanNumeral

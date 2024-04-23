@@ -11,5 +11,7 @@ toRoman' num acc
   | num < 9 = toRoman' (num - 5) (acc ++ "V")
   | num == 9 = "IX"
   | num < 40 = toRoman' (num - 10) (acc ++ "X")
+  | num < 50 && num >= 40 = toRoman' (num - 40) (acc ++ "XL")
+  | num == 50 = "L"
   | otherwise = error "Not implemented"
 
