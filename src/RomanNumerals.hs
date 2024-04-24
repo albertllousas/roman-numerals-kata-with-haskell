@@ -1,7 +1,6 @@
 module RomanNumerals where
 
 import qualified Data.List as List
-import Debug.Trace
 
 toRoman :: Int -> String
 toRoman num = toRoman' num ""
@@ -19,5 +18,3 @@ toRoman' num acc = if num == 0
 
 findMappingFor :: Int -> (Int, String)
 findMappingFor num = List.head $ List.filter (\(n, _) -> n <= num) mappings
-  where result = (List.head $ List.filter (\(n, _) -> n <= num) mappings)
-        toPrint = ("result -> " ++ (show num) ++ (show result))
