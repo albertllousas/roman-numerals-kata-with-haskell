@@ -1,9 +1,7 @@
-module RomanNumerals (toRoman) where
+module RomanNumerals (intToRoman, romanToInt) where
 
 import qualified Data.List as List
-
-toRoman :: Int -> String
-toRoman num = toRoman' num ""
+import Data.Maybe (fromMaybe)
 
 mappings :: [(Int, String)]
 mappings = [
@@ -11,11 +9,28 @@ mappings = [
   (50, "L"), (40, "XL"), (10, "X"), (9, "IX"), (5, "V"), (4, "IV"), (1, "I")
   ]
 
-toRoman' :: Int -> String -> String
-toRoman' num acc = if num == 0 then acc else toRoman' (num - value) (acc ++ roman)
-  where mapping = findMappingFor num
-        value = fst mapping
-        roman = snd mapping
+intToRoman :: Int -> String
+intToRoman num = intToRoman' num ""
 
-findMappingFor :: Int -> (Int, String)
-findMappingFor num = List.head $ List.filter (\(n, _) -> n <= num) mappings
+intToRoman' num acc = findMapping num |> \mapping ->
+                   if num == 0
+                   then acc
+                   else intToRoman' (num - (fst mapping)) (acc ++ snd mapping)
+
+romanToInt :: String -> Int
+romanToInt roman = romanToInt' roman 0
+
+romanToInt' [] acc = acc
+romanToInt' (x:[]) acc = acc + (findInt [x])
+romanToInt' (x:y:xs) acc =
+  findMaybeInt [x,y] |> \maybeInt -> case maybeInt of
+    Just int -> romanToInt' xs (acc + int)
+    Nothing -> findInt [x] |> \int -> romanToInt' (y:xs) (acc + int)
+
+findMaybeInt roman = List.find (\(number, romanNumeral) -> romanNumeral == roman) mappings |> fmap fst
+
+findInt roman = fromMaybe 0 (findMaybeInt roman)
+
+findMapping int = List.head $ List.filter (\(number, _) -> number <= int) mappings
+
+(|>) = flip ($)
