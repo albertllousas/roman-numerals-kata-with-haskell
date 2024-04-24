@@ -19,3 +19,5 @@ toRoman' num acc = if num == 0
 
 findMappingFor :: Int -> (Int, String)
 findMappingFor num = List.head $ List.filter (\(n, _) -> n <= num) mappings
+  where result = (List.head $ List.filter (\(n, _) -> n <= num) mappings)
+        toPrint = ("result -> " ++ (show num) ++ (show result))
